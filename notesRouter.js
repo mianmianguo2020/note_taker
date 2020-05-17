@@ -36,8 +36,6 @@ module.exports = function (app) {
             // console.log(data)
             array = JSON.parse(data);
             array = array.filter(note=>note.id !== parseInt(req.params.id));
-
-          
             console.log(array)
             writeFile(array, res)
 
