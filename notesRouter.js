@@ -5,7 +5,7 @@ module.exports = function (app) {
     app.get("/api/notes", function (req, res) {
         fs.readFile(__dirname + "/db/db.json", function (err, data) {
             if (err) throw err;
-            console.log(JSON.parse(data))
+            // console.log(JSON.parse(data))
             res.json(JSON.parse(data));
 
         })
@@ -27,7 +27,7 @@ module.exports = function (app) {
         })
    
     })
-    app.delete("/api/notes/:id", function (req,res){
+    app.delete("/api/notes/:id", function (req,res){//id is variable 
        
        
         fs.readFile(__dirname + "/db/db.json", function (err, data) {
@@ -35,7 +35,10 @@ module.exports = function (app) {
             if (err) throw err;
             // console.log(data)
             array = JSON.parse(data);
-            array.splice(req.params.id,1);
+            array = array.filter(note=>note.id !== parseInt(req.params.id));
+
+          
+            console.log(array)
             writeFile(array, res)
 
         })
