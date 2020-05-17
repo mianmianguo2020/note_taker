@@ -13,5 +13,6 @@ I WANT to be able to delete notes I've written before
 
 SO THAT I can organize my thoughts and keep track of tasks I need to complete
 
+https://notetaker-2020.herokuapp.com/notes
 
 © 2020 mianmianguo All Rights Reserved.
