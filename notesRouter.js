@@ -13,23 +13,34 @@ module.exports = function (app) {
     app.post("/api/notes", function (request, res) {
         let array = [];
        
-
         fs.readFile(__dirname + "/db/db.json", function (err, data) {
             
             if (err) throw err;
             // console.log(data)
             array = JSON.parse(data);
             array.push(request.body)
+            for (let i = 0; i < array.length; i ++) {
+                array[i].id = i;
+                
+            }
             writeFile(array, res)
-
         })
    
     })
-    // app.delete("/api/notes/:id", function (req,res){
+    app.delete("/api/notes/:id", function (req,res){
+       
+       
+        fs.readFile(__dirname + "/db/db.json", function (err, data) {
+            let array = [];
+            if (err) throw err;
+            // console.log(data)
+            array = JSON.parse(data);
+            array.splice(req.params.id,1);
+            writeFile(array, res)
 
+        })
 
-
-    // })
+    })
 
 }
 
